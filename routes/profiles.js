@@ -11,9 +11,7 @@ router.get('/:profileId', isLoggedIn, profilesCtrl.show)
 // POST localhost:3000/profiles/:profileId/ghosts
 router.post('/:profileId/ghosts', isLoggedIn, profilesCtrl.createGhost)
 // DELETE localhost:3000/profiles/ghosts/:ghostId
-
-
-
+router.delete('/ghosts/:ghostId', isLoggedIn, profilesCtrl.freeGhost)
 
 export {
   router

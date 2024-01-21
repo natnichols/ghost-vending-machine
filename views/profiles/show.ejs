@@ -32,6 +32,11 @@
       <h3>
         <%= getRandomGhost() %>
         <%= ghost.name %> has $<%= ghost.money %> for the snack machine!
+        <% if (isSelf) { %>
+          <form action="/profiles/ghosts/<%= ghost._id %>?_method=DELETE" method="POST" style="display: inline-block">
+            <button class="btn" type="submit">👻💨 Free <%= ghost.name %></button>
+          </form>
+        <% } %>
       </h3>
     <% }) %>
   <% } else { %>
