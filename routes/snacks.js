@@ -24,8 +24,8 @@ router.delete('/:snackId', isLoggedIn, snacksCtrl.delete)
 
 // PUT localhost:3000/snacks/:snackId (update)
 router.put('/:snackId', isLoggedIn, snacksCtrl.update)
-// PUT localhost:3000/snacks/:snackId/comments/:commentId (update)
-
+// PUT localhost:3000/snacks/:snackId/comments/:commentId (update comment)
+router.put('/:snackId/comments/:commentId', isLoggedIn, snacksCtrl.updateComment)
 // PATCH localhost:3000/snacks/:snackId/flip-stock
 router.patch('/:snackId/flip-stock', isLoggedIn, snacksCtrl.flipStock)
 

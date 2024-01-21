@@ -158,6 +158,34 @@ function editComment(req, res) {
   })
 }
 
+function updateComment(req, res) {
+  //find snack by ID
+  Snack.findById(req.params.snackId).then(snack => {
+    //find comment by ID
+    const comment = snack.comments.id(req.params.commentId)
+    //check that user trying to delete is the comment author
+    if (comment.author.equals(req.user.profile._id)) {
+      //update comment content using comment.set(req.body)
+      comment.set(req.body)
+      //save the parent snack document
+      snack.save().then(()=> {
+        //redirect to the snack show page
+        res.redirect(`/snacks/${snack._id}`)
+      })
+      .catch(err => {
+        console.log(`🚨💥🖍️`, err)
+        res.redirect('/snacks')
+      })
+    } else {
+      throw new Error ('🚫🍫 Not authorized 😡🛑')
+    }
+  })
+  .catch(err => {
+    console.log(`🚨💥🖍️`, err)
+    res.redirect('/snacks')
+  })
+}
+
 export {
   index,
   create,
@@ -168,4 +196,5 @@ export {
   deleteSnack as delete,
   addComment,
   editComment,
+  updateComment,
 }
