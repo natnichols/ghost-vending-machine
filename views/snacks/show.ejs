@@ -15,6 +15,9 @@
     <a href="/snacks/<%= snack._id %>/edit">
       <button class="btn">Edit Snack Details ✏️🍫</button>
     </a>
+    <form action="/snacks/<%= snack._id %>?_method=DELETE" method="POST">
+      <button class="btn" type="submit">Delete this snack ❌🍫</button>
+    </form>
     <% } %>
   <% } %>
 </section>

@@ -75,6 +75,30 @@ function update(req, res) {
       snack.updateOne(req.body).then(()=> {
         res.redirect(`/snacks/${snack._id}`)
       })
+      .catch(err => {
+        console.log(`🚨💥🖍️`, err)
+        res.redirect('/snacks')
+      })
+    } else {
+      throw new Error ('🚫🍫 Not authorized 😡🛑')
+    }
+  })
+  .catch(err => {
+    console.log(`🚨💥🖍️`, err)
+    res.redirect('/snacks')
+  })
+}
+
+function deleteSnack(req, res) {
+  Snack.findById(req.params.snackId).then(snack => {
+    if (snack.owner.equals(req.user.profile._id)) {
+      snack.deleteOne().then(()=> {
+        res.redirect('/snacks')
+      })
+      .catch(err => {
+        console.log(`🚨💥🖍️`, err)
+        res.redirect('/snacks')
+      })
     } else {
       throw new Error ('🚫🍫 Not authorized 😡🛑')
     }
@@ -92,4 +116,5 @@ export {
   flipStock,
   edit,
   update,
+  deleteSnack as delete,
 }
