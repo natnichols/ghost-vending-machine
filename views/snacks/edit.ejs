@@ -1,0 +1,28 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>
+  <h1>Edit Snack Details! ✏️🍫</h1>
+  <form action="/snacks/<%= snack._id %>?_method=PUT" method="POST">
+    <label>
+      Name: 
+      <input 
+        type="text"
+        name="name" 
+        value="<%= snack.name %>" 
+        autocomplete="off"
+      >
+    </label>
+    <label>
+      In Stock?
+      <input 
+        type="checkbox" 
+        name="inStock" 
+				<%= snack.inStock ? "checked" : "" %> 
+      >
+    </label>
+    <button class="btn" type="submit">Edit the ✏️🍫</button>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>

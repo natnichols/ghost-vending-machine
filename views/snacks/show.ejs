@@ -11,6 +11,11 @@
         Mark snack <%= snack.inStock ? 'not in stock 🍫😔' : 'in stock🍫🎉' %>
       </button>
     </form>
+    <% if (snack.owner.equals(user?.profile._id)) { %>
+    <a href="/snacks/<%= snack._id %>/edit">
+      <button class="btn">Edit Snack Details ✏️🍫</button>
+    </a>
+    <% } %>
   <% } %>
 </section>
 

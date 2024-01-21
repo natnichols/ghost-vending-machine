@@ -55,9 +55,23 @@ function flipStock(req, res) {
   })
 }
 
+function edit(req, res) {
+  Snack.findById(req.params.snackId).then(snack => {
+    res.render('snacks/edit', {
+      snack,
+      title: 'edit ✏️🍫'
+    })
+  })
+  .catch(err => {
+    console.log(`🚨💥🖍️`, err)
+    res.redirect('/')
+  })
+}
+
 export {
   index,
   create,
   show,
   flipStock,
+  edit,
 }
