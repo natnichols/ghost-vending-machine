@@ -26,7 +26,10 @@ function create(req, res) {
 }
 
 function show(req, res) {
-  Snack.findById(req.params.snackId).populate('owner').then(snack => {
+  Snack.findById(req.params.snackId).populate([
+    {path: 'owner'},
+    {path: 'comments.author'}
+  ]).then(snack => {
     res.render('snacks/show', {
       snack,
       title: `🍫 show`

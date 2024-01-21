@@ -21,6 +21,13 @@
     <% } %>
   <% } %>
   <h2>Comments</h2>
+  <ul>
+    <% snack.comments?.forEach(comment => { %>
+      <li>
+        <%= comment.content %> - <%= comment.author.name %>
+      </li>
+    <% }) %>
+  </ul>
   <% if (user) { %>
     <h3>Add a comment</h3>
     <form action="/snacks/<%= snack._id %>/comments" method="POST">
