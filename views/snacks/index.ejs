@@ -1,0 +1,14 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>
+  <h1>Snack Machine!🍫</h1>
+  <h2>What's in the Snack Machine today?</h2>
+  <ul>
+    <% snacks.forEach(snack => { %>
+    <li>🍫 <%= snack.name %> is <%= snack.inStock ? 'in stock' : 'not in stock' %></li>
+    <% }) %>
+  </ul>
+</section>
+
+<%- include('../partials/footer') %>
