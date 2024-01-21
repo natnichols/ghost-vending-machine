@@ -38,8 +38,26 @@ function show(req, res) {
   })
 }
 
+function flipStock(req, res) {
+  Snack.findById(req.params.snackId).then(snack => {
+    snack.inStock = !snack.inStock
+    snack.save().then(()=> {
+      res.redirect(`/snacks/${snack._id}`)
+    })
+    .catch(err => {
+      console.log(`🚨💥🖍️`, err)
+      res.redirect('/')
+    })
+  })
+  .catch(err => {
+    console.log(`🚨💥🖍️`, err)
+    res.redirect('/')
+  })
+}
+
 export {
   index,
   create,
   show,
+  flipStock,
 }

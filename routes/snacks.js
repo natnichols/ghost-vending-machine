@@ -27,7 +27,7 @@ router.post('/', isLoggedIn, snacksCtrl.create)
 // PUT localhost:3000/snacks/:snackId/comments/:commentId (update)
 
 // PATCH localhost:3000/snacks/:snackId/flip-stock
-
+router.patch('/:snackId/flip-stock', isLoggedIn, snacksCtrl.flipStock)
 
 export {
   router

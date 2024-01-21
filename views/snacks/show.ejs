@@ -5,6 +5,13 @@
 	<p>This snack was requested by <%= snack.owner.name %>...</p>
   <h1><%= snack.name %> 🍫</h1>
   <h2>This snack is <%= snack.inStock ? 'in stock! 😋' : 'not in stock! 😫' %></h2>
+  <% if (user) { %>
+    <form action="/snacks/<%= snack._id %>/flip-stock?_method=PATCH" method="POST">
+      <button class="btn" type="submit">
+        Mark snack <%= snack.inStock ? 'not in stock 🍫😔' : 'in stock🍫🎉' %>
+      </button>
+    </form>
+  <% } %>
 </section>
 
 <%- include('../partials/footer') %>
