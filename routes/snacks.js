@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import * as snacksCtrl from '../controllers/snacks.js'
+import { isLoggedIn } from '../middleware/middleware.js'
 
 const router = Router()
 
@@ -14,7 +15,7 @@ router.get('/', snacksCtrl.index)
 // GET localhost:3000/snacks/:snackId/comments/:commentId/edit
 
 // POST localhost:3000/snacks
-
+router.post('/', isLoggedIn, snacksCtrl.create)
 // POST localhost:3000/snacks/:snackId/comments
 
 // DELETE localhost:3000/snacks/:snackId

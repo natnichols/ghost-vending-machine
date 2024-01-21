@@ -3,6 +3,20 @@
 
 <section>
   <h1>Snack Machine!🍫</h1>
+  <% if (user) { %>
+    <h2>Add a Snack!</h2>
+    <form action="/snacks" method="POST">
+      <label>
+        Name:
+        <input type="text" name="name" autocomplete="off">
+      </label>
+      <label>
+        In Stock?
+        <input type="checkbox" name="inStock">
+      </label>
+      <button type="submit" class="btn">Add 🍫</button>
+    </form>
+  <% } %>
   <h2>What's in the Snack Machine today?</h2>
   <ul>
     <% snacks.forEach(snack => { %>
