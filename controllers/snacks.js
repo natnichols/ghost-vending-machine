@@ -21,7 +21,7 @@ function create(req, res) {
   })
   .catch(err => {
     console.log(`🚨💥🖍️`, err)
-    res.redirect('/')
+    res.redirect('/snacks')
   })
 }
 
@@ -34,7 +34,7 @@ function show(req, res) {
   })
   .catch(err => {
     console.log(`🚨💥🖍️`, err)
-    res.redirect('/')
+    res.redirect('/snacks')
   })
 }
 
@@ -46,12 +46,12 @@ function flipStock(req, res) {
     })
     .catch(err => {
       console.log(`🚨💥🖍️`, err)
-      res.redirect('/')
+      res.redirect('/snacks')
     })
   })
   .catch(err => {
     console.log(`🚨💥🖍️`, err)
-    res.redirect('/')
+    res.redirect('/snacks')
   })
 }
 
@@ -64,7 +64,24 @@ function edit(req, res) {
   })
   .catch(err => {
     console.log(`🚨💥🖍️`, err)
-    res.redirect('/')
+    res.redirect('/snacks')
+  })
+}
+
+function update(req, res) {
+  Snack.findById(req.params.snackId).then(snack => {
+    if (snack.owner.equals(req.user.profile._id)) {
+      req.body.inStock = !! req.body.inStock
+      snack.updateOne(req.body).then(()=> {
+        res.redirect(`/snacks/${snack._id}`)
+      })
+    } else {
+      throw new Error ('🚫🍫 Not authorized 😡🛑')
+    }
+  })
+  .catch(err => {
+    console.log(`🚨💥🖍️`, err)
+    res.redirect('/snacks')
   })
 }
 
@@ -74,4 +91,5 @@ export {
   show,
   flipStock,
   edit,
+  update,
 }

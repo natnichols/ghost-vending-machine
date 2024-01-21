@@ -23,7 +23,7 @@ router.post('/', isLoggedIn, snacksCtrl.create)
 // DELETE localhost:3000/snacks/:snackId
 
 // PUT localhost:3000/snacks/:snackId (update)
-
+router.put('/:snackId', isLoggedIn, snacksCtrl.update)
 // PUT localhost:3000/snacks/:snackId/comments/:commentId (update)
 
 // PATCH localhost:3000/snacks/:snackId/flip-stock
