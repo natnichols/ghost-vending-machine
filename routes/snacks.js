@@ -17,7 +17,7 @@ router.get('/:snackId/edit', isLoggedIn, snacksCtrl.edit)
 // POST localhost:3000/snacks
 router.post('/', isLoggedIn, snacksCtrl.create)
 // POST localhost:3000/snacks/:snackId/comments
-
+router.post('/:snackId/comments', isLoggedIn, snacksCtrl.addComment)
 // DELETE localhost:3000/snacks/:snackId
 router.delete('/:snackId', isLoggedIn, snacksCtrl.delete)
 // DELETE localhost:3000/snacks/:snackId (delete comment)

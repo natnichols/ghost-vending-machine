@@ -20,6 +20,14 @@
     </form>
     <% } %>
   <% } %>
+  <h2>Comments</h2>
+  <% if (user) { %>
+    <h3>Add a comment</h3>
+    <form action="/snacks/<%= snack._id %>/comments" method="POST">
+      <textarea name="content"></textarea><br>
+      <button class="btn" type="submit">Add Comment</button>
+    </form>
+  <% } %>
 </section>
 
 <%- include('../partials/footer') %>

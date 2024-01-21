@@ -109,6 +109,29 @@ function deleteSnack(req, res) {
   })
 }
 
+function addComment(req, res) {
+  //find snack by id
+  Snack.findById(req.params.snackId).then(snack => {
+    //attach the authors profile_id to req.body.author
+    req.body.author = req.user.profile._id
+    //add new comment (req.body) to snack's comments array
+    snack.comments.push(req.body)
+    //save the snack
+    snack.save().then(()=> {
+      //redirect to snack show view
+      res.redirect(`/snacks/${snack._id}`)
+    })
+    .catch(err => {
+      console.log(`🚨💥🖍️`, err)
+      res.redirect('/snacks')
+    })
+  })
+  .catch(err => {
+    console.log(`🚨💥🖍️`, err)
+    res.redirect('/snacks')
+  })
+}
+
 export {
   index,
   create,
@@ -117,4 +140,5 @@ export {
   edit,
   update,
   deleteSnack as delete,
+  addComment,
 }
