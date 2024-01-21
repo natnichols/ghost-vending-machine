@@ -21,7 +21,7 @@ router.post('/:snackId/comments', isLoggedIn, snacksCtrl.addComment)
 // DELETE localhost:3000/snacks/:snackId
 router.delete('/:snackId', isLoggedIn, snacksCtrl.delete)
 // DELETE localhost:3000/snacks/:snackId (delete comment)
-
+router.delete('/:snackId/comments/:commentId', isLoggedIn, snacksCtrl.deleteComment)
 // PUT localhost:3000/snacks/:snackId (update)
 router.put('/:snackId', isLoggedIn, snacksCtrl.update)
 // PUT localhost:3000/snacks/:snackId/comments/:commentId (update comment)
