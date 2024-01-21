@@ -20,6 +20,10 @@ function show(req, res) {
       title: `👻 ${profile.name}'s profile`,
       profile,
       isSelf,
+      getRandomGhost: () => {
+        const ghosts = ["👻", "💸", "😱", "🍫", "🙀"]
+        return ghosts[Math.floor(Math.random() * ghosts.length)]
+      }
     })
   })
   .catch(err => {
@@ -28,7 +32,25 @@ function show(req, res) {
   })
 }
 
+function createGhost(req, res) {
+  Profile.findById(req.user.profile._id).then(profile => {
+    profile.ghosts.push(req.body)
+    profile.save().then(()=> {
+      res.redirect(`/profiles/${req.user.profile._id}`)
+    })
+    .catch(err => {
+      console.log(`🚨💥🖍️`, err)
+      res.redirect(`/profiles/${req.user.profile._id}`)
+    })
+  })
+  .catch(err => {
+    console.log(`🚨💥🖍️`, err)
+    res.redirect(`/profiles/${req.user.profile._id}`)
+  })
+}
+
 export {
   index,
   show,
+  createGhost,
 }

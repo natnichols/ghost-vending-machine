@@ -10,6 +10,35 @@
     >
   </div>
   <h1>It's a-<%= isSelf ? "you" : profile.name %>!</h1>
+  <% if (isSelf) { %>
+    <h2>Add a ghost!</h2>
+    <form action="/profiles/<%= profile._id %>/ghosts" method="POST">
+      <label>
+        Name:
+        <input type="text" name="name" autocomplete="off">
+      </label>
+      <label>
+        Money:
+        <input type="number" name="money" autocomplete="off">
+      </label>
+      <button type="submit">Add 👻</button>
+    </form>
+  <% } %>
+  <% if (profile.ghosts.length) { %>
+    <h2>
+      <%= isSelf ? "You have" : `${profile.name} has` %> ghosts! Here they are!
+    </h2>
+    <% profile.ghosts.forEach(ghost => { %>
+      <h3>
+        <%= getRandomGhost() %>
+        <%= ghost.name %> has $<%= ghost.money %> for the snack machine!
+      </h3>
+    <% }) %>
+  <% } else { %>
+    <h2>
+      <%= isSelf ? "You don't" : `${profile.name} doesn't` %> have any cats.
+    </h2>
+  <% } %>
 </main>
 
 <%- include('../partials/footer') %>
