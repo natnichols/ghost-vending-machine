@@ -135,6 +135,29 @@ function addComment(req, res) {
   })
 }
 
+function editComment(req, res) {
+  //find snack by id
+  Snack.findById(req.params.snackId).then(snack => {
+    //find the comment by id
+    const comment = snack.comments.id(req.params.commentId)
+    //check that the user editing the comment is the author
+    if (comment.author.equals(req.user.profile._id)) {
+      //render editComment view
+      res.render('snacks/editComment', {
+        snack,
+        comment,
+        title: 'Update Comment'
+      })
+    } else {
+      throw new Error ('🚫🍫 Not authorized 😡🛑')
+    }
+  })
+  .catch(err => {
+    console.log(`🚨💥🖍️`, err)
+    res.redirect('/snacks')
+  })
+}
+
 export {
   index,
   create,
@@ -144,4 +167,5 @@ export {
   update,
   deleteSnack as delete,
   addComment,
+  editComment,
 }

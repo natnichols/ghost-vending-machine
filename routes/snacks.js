@@ -13,7 +13,7 @@ router.get('/:snackId', snacksCtrl.show)
 // GET localhost:3000/snacks/:snackId/edit
 router.get('/:snackId/edit', isLoggedIn, snacksCtrl.edit)
 // GET localhost:3000/snacks/:snackId/comments/:commentId/edit
-
+router.get('/:snackId/comments/:commentId/edit', isLoggedIn, snacksCtrl.editComment)
 // POST localhost:3000/snacks
 router.post('/', isLoggedIn, snacksCtrl.create)
 // POST localhost:3000/snacks/:snackId/comments
