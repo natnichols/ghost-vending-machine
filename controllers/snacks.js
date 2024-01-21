@@ -25,7 +25,21 @@ function create(req, res) {
   })
 }
 
+function show(req, res) {
+  Snack.findById(req.params.snackId).populate('owner').then(snack => {
+    res.render('snacks/show', {
+      snack,
+      title: `🍫 show`
+    })
+  })
+  .catch(err => {
+    console.log(`🚨💥🖍️`, err)
+    res.redirect('/')
+  })
+}
+
 export {
   index,
   create,
+  show,
 }

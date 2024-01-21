@@ -20,7 +20,11 @@
   <h2>What's in the Snack Machine today?</h2>
   <ul>
     <% snacks.forEach(snack => { %>
-    <li>🍫 <%= snack.name %> is <%= snack.inStock ? 'in stock' : 'not in stock' %></li>
+    <li>
+      🍫 
+      <a href="/snacks/<%= snack._id %>"><%= snack.name %></a> 
+      is <%= snack.inStock ? 'in stock' : 'not in stock' %>
+    </li>
     <% }) %>
   </ul>
 </section>
